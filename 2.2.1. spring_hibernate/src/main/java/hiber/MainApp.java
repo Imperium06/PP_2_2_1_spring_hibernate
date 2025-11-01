@@ -17,7 +17,8 @@ public class MainApp {
       UserService userService = context.getBean(UserService.class);
 
       userService.add(new User("User1", "Lastname1", "user1@mail.ru"));
-      userService.add(new User("User2", "Lastname2", "user2@mail.ru"));
+      userService.add(new User("User2", "Lastname2", "user2@mail.ru",
+              new Car("BMW", 6)));
       userService.add(new User("User3", "Lastname3", "user3@mail.ru"));
       userService.add(new User("User4", "Lastname4", "user4@mail.ru"));
       userService.add(new User("User5", "Lastname4", "user4@mail.ru",
@@ -28,31 +29,17 @@ public class MainApp {
 
       List<User> users = userService.listUsers();
       for (User user : users) {
-         System.out.println("Id = "+user.getId());
-         System.out.println("First Name = "+user.getFirstName());
-         System.out.println("Last Name = "+user.getLastName());
-         System.out.println("Email = "+user.getEmail());
-         System.out.println("Car = "+user.getCar());
-         System.out.println();
+         System.out.println(user);
       }
 
-      User u = userService.getUserByCarByModel("Tesla");
+      User u = userService.getUserByCar("Tesla", 10);
+      System.out.println(u);
 
-      System.out.println("Id = "+u.getId());
-      System.out.println("First Name = "+u.getFirstName());
-      System.out.println("Last Name = "+u.getLastName());
-      System.out.println("Email = "+u.getEmail());
-      System.out.println("Car = "+u.getCar());
-      System.out.println();
+      User u2 = userService.getUserByCar("VAZ", 2106);
+      System.out.println(u2);
 
-      User u2 = userService.getUserByCarBySeries(2106);
-
-      System.out.println("Id = "+u2.getId());
-      System.out.println("First Name = "+u2.getFirstName());
-      System.out.println("Last Name = "+u2.getLastName());
-      System.out.println("Email = "+u2.getEmail());
-      System.out.println("Car = "+u2.getCar());
-      System.out.println();
+      User u3 = userService.getUserByCar("BMW", 6);
+      System.out.println(u3);
 
 
       context.close();

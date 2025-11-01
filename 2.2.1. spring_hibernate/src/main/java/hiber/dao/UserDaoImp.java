@@ -22,25 +22,14 @@ public class UserDaoImp implements UserDao {
    }
 
    @Override
-   public User getUserByCarByModel(String modelCar) {
-      String hql = "select u from User u join u.car c where c.model LIKE :model";
+   public User getUserByCar(String modelCar, int seriesCar) {
+      String hql = "select u from User u join u.car c where c.model LIKE :model and c.series =:series";
 
       Query<User> query = sessionFactory.getCurrentSession().createQuery(hql, User.class)
-             .setParameter("model", modelCar);
-
-      return query.getSingleResult();
-
-   }
-
-   @Override
-   public User getUserByCarBySeries(int seriesCar) {
-      String hql = "select u from User u join u.car c where c.series =:series";
-
-      Query<User> query = sessionFactory.getCurrentSession().createQuery(hql, User.class)
+              .setParameter("model", modelCar)
               .setParameter("series", seriesCar);
 
-      return query.getSingleResult();
-
+      return query.getSingleResult(); //МЕТОД ОБЪЕДЕНЕН
    }
 
    @Override
