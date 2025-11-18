@@ -5,9 +5,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "users")
 public class User {
-   // ----------------------------------------------------------------
 
-//--------------------------------------------------------------------- Внедрение через конструктор или сеттер
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Long id;
@@ -21,7 +19,7 @@ public class User {
    @Column(name = "email")
    private String email;
 
-   @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER) //ИСПРАВИЛ ПОСЛЕ ОСНОВНЫХ ПОЛЕЙ
+   @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
    @JoinColumn(name = "car_id")
    private Car car;
 
@@ -33,7 +31,6 @@ public class User {
       this.email = email;
    }
 
-   //ВНЕДРЕНИЕ ЧЕРЕЗ КОНСТРУКТОР
    public User(String firstName, String lastName, String email, Car car) {
       this.firstName = firstName;
       this.lastName = lastName;
